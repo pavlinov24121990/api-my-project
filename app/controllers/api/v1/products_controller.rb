@@ -6,7 +6,8 @@ class Api::V1::ProductsController < ApplicationController
 
   def create
     @product = Product.new(params_product)
-    render json: @product, each_serializer: ProductSerializer if @product.save
+    return render json: @product, each_serializer: ProductSerializer if @product.save
+    return render_errors(object: @product) unless @product.save
   end
   
   def params_product
