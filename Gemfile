@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -19,7 +21,4 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'rubocop', '~> 1.57', require: false
-end
-
-group :development do
 end

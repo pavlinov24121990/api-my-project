@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   def render_errors(object:)
     render json: { errors: object.errors.full_messages },
