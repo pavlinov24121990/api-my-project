@@ -6,4 +6,5 @@ Rails.application.routes.draw do
       resources :products, only: %i[index create]
     end
   end
+  root to: redirect('/api-docs')
 end

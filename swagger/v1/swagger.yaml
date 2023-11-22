@@ -3,9 +3,66 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
-paths: {}
+paths:
+  "/products":
+    post:
+      summary: index a product
+      tags:
+      - Products
+      parameters: []
+      responses:
+        '201':
+          description: product created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+              required:
+              - title
+              - description
+  "/products/{id}":
+    get:
+      summary: show a product
+      tags:
+      - Products
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: product found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  description:
+                    type: string
+                required:
+                - id
+                - title
+                - description
+        '404':
+          description: product not found
+        '406':
+          description: unsupported accept header
 servers:
-- url: https://{defaultHost}
+- url: http://localhost:3000/api/v1
   variables:
     defaultHost:
-      default: www.example.com
+      default: http://localhost:3000/api/v1

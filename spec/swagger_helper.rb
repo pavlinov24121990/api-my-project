@@ -26,10 +26,10 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: 'http://localhost:3000/api/v1',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'http://localhost:3000/api/v1'
             }
           }
         }
