@@ -11,6 +11,7 @@ gem "bootsnap", require: false
 gem 'rswag'
 gem 'rswag-api'
 gem 'rswag-ui'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
