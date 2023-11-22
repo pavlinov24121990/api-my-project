@@ -12,6 +12,7 @@ gem 'rswag'
 gem 'rswag-api'
 gem 'rswag-ui'
 gem 'active_model_serializers'
+gem "image_processing", ">= 1.2"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
