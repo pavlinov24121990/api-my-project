@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 # spec/requests/blogs_spec.rb
 require 'swagger_helper'
 
 describe 'Products API' do
-
   path '/products' do
-
     post 'index a product' do
       tags 'Products'
       consumes 'application/json'
@@ -14,7 +14,7 @@ describe 'Products API' do
           title: { type: :string },
           description: { type: :string }
         },
-        required: [ 'title', 'description' ]
+        required: %w[title description]
       }
 
       response '201', 'product created' do
@@ -30,7 +30,6 @@ describe 'Products API' do
   end
 
   path '/products/{id}' do
-
     get 'show a product' do
       tags 'Products'
       produces 'application/json'
@@ -39,12 +38,12 @@ describe 'Products API' do
 
       response '200', 'product found' do
         schema type: :object,
-          properties: {
-            id: { type: :integer },
-            title: { type: :string },
-            description: { type: :string }
-          },
-          required: [ 'id', 'title', 'description' ]
+               properties: {
+                 id: { type: :integer },
+                 title: { type: :string },
+                 description: { type: :string }
+               },
+               required: %w[id title description]
 
         let(:id) { Product.create(title: 'foo', description: 'bar').id }
         run_test!
@@ -56,7 +55,7 @@ describe 'Products API' do
       end
 
       response '406', 'unsupported accept header' do
-        let(:'Accept') { 'application/foo' }
+        let(:Accept) { 'application/foo' }
         run_test!
       end
     end
