@@ -2,21 +2,19 @@ module Api
   module V1
     class ProductsController < ApplicationController
 
-      # :swagger: :get
-      # Список продуктов
-      #
-      # Получение списка всех продуктов
-      #
-      # :swagger: :response
-      # @return [Array<Product>] Список продуктов
       def index
         @products = Product.all
         render json: @products
       end
 
       def create
+        @product = Product.new(params_product)
+        render json: @product if @product.save
       end
-
+      
+      def params_product
+        params.require(:product).permit(:title, :description, :price)
+      end
     end
   end
 end
