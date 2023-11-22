@@ -4,8 +4,11 @@ module Api
   module V1
     class ProductsController < ApplicationController
       def index
-        @products = Product.all
-        render json: @products, each_serializer: ProductSerializer
+        @pagy, @products = pagy(Product.all, items: 6)
+        render json: {
+          products: ActiveModelSerializers::SerializableResource.new(@products, each_serializer: ProductSerializer),
+          pages_count: pagy_metadata(@pagy)[:pages]
+        }
       end
 
       def create
