@@ -1,4 +1,12 @@
-# frozen_string_literal: true
+class Api::V1::ProductsController < ApplicationController
+  include Pagy::Backend
+  require 'pagy/extras/metadata'
+  
+  def index
+    @pagy, @products = pagy(Product.all, items: 6)
+    render json: { data: ActiveModelSerializers::SerializableResource.new(@products, each_serializer: ProductSerializer),
+               pagy: pagy_metadata(@pagy)[:pages] }
+  end
 
 module Api
   module V1
