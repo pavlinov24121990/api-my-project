@@ -1,6 +1,5 @@
 class Api::V1::ProductsController < ApplicationController
-  include Pagy::Backend
-  require 'pagy/extras/metadata'
+  
   
   def index
     @pagy, @products = pagy(Product.all, items: 6)
