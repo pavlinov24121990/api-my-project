@@ -7,7 +7,7 @@ module Api
         user = User.new(user_params)
         return render json: {
           user: ActiveModelSerializers::SerializableResource.new(user, each_serializer: UserSerializer),
-          token: encode_token(user_id: user.id)
+          token: JsonWebToken.encode_token(user_id: user.id)
         } if user.save
         
         render_errors(object: user)
