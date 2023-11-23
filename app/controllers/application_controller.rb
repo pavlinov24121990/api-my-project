@@ -8,4 +8,8 @@ class ApplicationController < ActionController::API
     render json: { errors: object.errors.full_messages },
            status: :unprocessable_entity
   end
+
+  def encode_token(payload)
+    JWT.encode(payload, Rails.application.secret_key_base)
+  end
 end
