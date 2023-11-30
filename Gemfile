@@ -14,9 +14,7 @@ gem 'pagy'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.8'
-gem 'rswag'
-gem 'rswag-api'
-gem 'rswag-ui'
+gem 'rack-cors'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
@@ -24,5 +22,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'rubocop', '~> 1.57', require: false
-  gem 'rack-cors'
+  gem 'rswag'
+  gem 'rswag-api'
+  gem 'rswag-ui'
 end
