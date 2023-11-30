@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-class AdminController < ActionController::API
-  before_action :current_userr, :authenticate_admin!
+class AdminController < ApplicationController
+  before_action :authenticate_user
 
-  def authenticate_admin!
-    head :bad_request unless @user.admin?
+  protected
+
+  def authenticate_user
+    super
+    head :bad_request unless @current_user.admin?
   end
 end
