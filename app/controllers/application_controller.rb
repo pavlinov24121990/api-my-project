@@ -8,4 +8,12 @@ class ApplicationController < ActionController::API
     render json: { errors: object.errors.full_messages },
            status: :unprocessable_entity
   end
+
+  def current_user!
+    token = request.headers['Authorization']&.split(' ')&.last
+    decoded_token = JsonWebToken.decode_token(token)
+    user_id = decoded_token[0]['user_id']
+    User.find_by(id: user_id)
+    render json: { error: 'User not found' }, status: :unauthorized unless user_id.present?
+  end
 end
