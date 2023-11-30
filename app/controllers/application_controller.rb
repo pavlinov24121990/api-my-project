@@ -9,6 +9,8 @@ class ApplicationController < ActionController::API
            status: :unprocessable_entity
   end
 
+  protected
+  
   def authenticate_user
     token = request.headers['Authorization']&.split(' ')&.last
     decoded_token = JsonWebToken.decode_token(token)
