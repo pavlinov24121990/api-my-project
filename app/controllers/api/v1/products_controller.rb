@@ -3,6 +3,7 @@
 module Api
   module V1
     class ProductsController < ApplicationController
+      before_action :current_user!
       def index
         pagy, products = pagy(Product.all, items: 6)
         render json: {
