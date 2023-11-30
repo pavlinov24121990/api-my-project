@@ -3,7 +3,7 @@
 module Api
   module V1
     module Admin
-      class CompaniesController < ApplicationController
+      class CompaniesController < AdminController
         def index
           company = Company.all.first
           return render json: company, each_serializer: CompanySerializer if company.present?
