@@ -6,9 +6,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :products, only: %i[index create]
-      resources :categories, only: %i[index create]
-      resources :companies, only: %i[index create]
+      namespace :admin do
+        resources :products, only: %i[index create]
+        resources :companies, only: %i[index create]
+      end
+      resources :products, only: %i[index]
+      resources :companies, only: %i[index]
       resources :registrations, only: %i[create]
       resources :sessions, only: %i[create]
     end
