@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :admin do
         resources :products, only: %i[index create]
-        resources :companies, only: %i[index create]
+        resources :companies, only: %i[index update]
       end
       resources :products, only: %i[index]
       resources :companies, only: %i[index]

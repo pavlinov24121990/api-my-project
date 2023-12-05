@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CompanySerializer < ActiveModel::Serializer
-  attributes :title, :description, :name, :image_urls, :formatted_phone, :address, :email, :logo_url
+  attributes :title, :description, :name, :image_urls, :formatted_phone, :address, :email, :logo_url, :phone, :id
 
   def image_urls
     object.images.map do |image|
