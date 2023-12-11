@@ -5,6 +5,7 @@ module Api
     module Admin
       class CompaniesController < AdminController
         before_action :set_company, only: %i[update]
+        
         def index
           company = Company.all.first
           return render json: company, each_serializer: CompanySerializer if company.present?
@@ -13,7 +14,6 @@ module Api
         end
 
         def update
-          debugger
           return render json: @company, each_serializer: CompanySerializer if @company.update(params_company)
 
           render_errors(object: @company)
