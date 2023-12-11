@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProductSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :price, :image_urls
+  attributes :id, :title, :description, :price, :image_urls, :active
 
   def image_urls
     object.images.map do |image|

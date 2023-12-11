@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
   require 'pagy/extras/metadata'
 
   def render_errors(object:)
-    render json: { errors: object.errors.full_messages },
+    render json: { errors: object.errors },
            status: :unprocessable_entity
   end
 
