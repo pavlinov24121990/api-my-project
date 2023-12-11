@@ -6,7 +6,7 @@ module Api
       class ProductsController < AdminController
         before_action :set_product, only: %i[show destroy update]
         def index
-          pagy, products = pagy(params[:active] == 'true' ? Product.active_true : Product.active_false, items: 6)
+          pagy, products = pagy(Product.by_active(active), items: 6)
           render json: {
             products: ActiveModelSerializers::SerializableResource.new(products, each_serializer: ProductSerializer),
             pages_count: pagy_metadata(pagy)[:pages]
@@ -14,9 +14,7 @@ module Api
         end
 
         def show
-          return render json: @product, each_serializer: ProductSerializer if @product
-
-          render_errors(object: @product)
+          render json: ProductSerializer.new(@product).serializable_hash
         end
 
         def create
@@ -40,6 +38,10 @@ module Api
 
         def params_product
           params.require(:product).permit(:title, :description, :price, :active, images: [])
+        end
+
+        def active
+          ActiveRecord::Type::Boolean.new.cast(params[:active])
         end
 
         def set_product

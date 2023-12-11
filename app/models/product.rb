@@ -6,6 +6,5 @@ class Product < ApplicationRecord
   validates :title, :description, presence: true
   validates :price, numericality: { only_integer: true }
 
-  scope :active_true, -> { where(active: true) }
-  scope :active_false, -> { where(active: false) }
+  scope :by_active, ->(active) { where(active: ) }
 end
