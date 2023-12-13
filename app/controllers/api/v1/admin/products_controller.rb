@@ -6,7 +6,7 @@ module Api
       class ProductsController < AdminController
         before_action :set_product, only: %i[show destroy update]
         def index
-          pagy, products = pagy(Product.by_active(active), items: 6)
+          pagy, products = pagy(Product.by_active(active).order(updated_at: :desc), items: 6)
           render json: {
             products: ActiveModelSerializers::SerializableResource.new(products, each_serializer: ProductSerializer),
             pages_count: pagy_metadata(pagy)[:pages]

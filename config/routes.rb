@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         resources :products, only: %i[index create show destroy update]
         resources :companies, only: %i[index update]
       end
+      resource :users, only: %i[show]
       resources :products, only: %i[index]
       resources :companies, only: %i[index]
       resources :registrations, only: %i[create]
