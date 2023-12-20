@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         resources :companies, only: %i[index update]
       end
       resource :users, only: %i[show]
-      resources :products, only: %i[index]
+      resources :products, only: %i[index show]
       resources :companies, only: %i[index]
       resources :registrations, only: %i[create]
       resources :sessions, only: %i[create]
